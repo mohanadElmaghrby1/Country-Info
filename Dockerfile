@@ -1,4 +1,1 @@
-FROM openjdk:8-jdk-alpine
-ADD target/country-spring-boot.jar country-spring-boot.jar
-EXPOSE 8080
-ENTRYPOINT ["java" , "-jar" , "country-spring-boot.jar"]
+FROM maven:3.5-jdk-8
