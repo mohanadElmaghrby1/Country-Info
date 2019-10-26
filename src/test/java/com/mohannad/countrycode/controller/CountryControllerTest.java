@@ -4,7 +4,6 @@ import com.mohannad.countrycode.model.CountryEntity;
 import com.mohannad.countrycode.model.CountryInfo;
 import com.mohannad.countrycode.service.CountryLanguageService;
 import com.mohannad.countrycode.service.CountryService;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
@@ -13,7 +12,6 @@ import org.mockito.MockitoAnnotations;
 
 import javax.persistence.EntityNotFoundException;
 
-import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
