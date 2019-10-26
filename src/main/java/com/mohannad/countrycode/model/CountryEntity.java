@@ -3,6 +3,7 @@ package com.mohannad.countrycode.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * created by mohannad  on 25/10/19
@@ -17,13 +18,16 @@ public class CountryEntity {
     private float surfacearea;
     private Short indepyear;
     private int population;
-    private Float lifeexpectancy;
+    private float life_expectancy;
     private BigDecimal gnp;
     private BigDecimal gnpold;
     private String localname;
     private String governmentform;
     private String headofstate;
     private String code2;
+
+//    @OneToMany(fetch = FetchType.EAGER)
+//    private Set<CountrylanguageEntity> langs;
 
     @Id
     @Column(name = "code")
@@ -97,12 +101,12 @@ public class CountryEntity {
 
     @Basic
     @Column(name = "life_expectancy")
-    public Float getLifeexpectancy() {
-        return lifeexpectancy;
+    public float getLifeexpectancy() {
+        return life_expectancy;
     }
 
-    public void setLifeexpectancy(Float lifeexpectancy) {
-        this.lifeexpectancy = lifeexpectancy;
+    public void setLifeexpectancy(Float life_expectancy) {
+        this.life_expectancy = life_expectancy;
     }
 
     @Basic
@@ -165,6 +169,14 @@ public class CountryEntity {
         this.code2 = code2;
     }
 
+//    public Set<CountrylanguageEntity> getLangs() {
+//        return langs;
+//    }
+//
+//    public void setLangs(Set<CountrylanguageEntity> langs) {
+//        this.langs = langs;
+//    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -177,7 +189,7 @@ public class CountryEntity {
                 Objects.equals(continent, that.continent) &&
                 Objects.equals(region, that.region) &&
                 Objects.equals(indepyear, that.indepyear) &&
-                Objects.equals(lifeexpectancy, that.lifeexpectancy) &&
+                Objects.equals(life_expectancy, that.life_expectancy) &&
                 Objects.equals(gnp, that.gnp) &&
                 Objects.equals(gnpold, that.gnpold) &&
                 Objects.equals(localname, that.localname) &&
@@ -188,6 +200,26 @@ public class CountryEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(code, name, continent, region, surfacearea, indepyear, population, lifeexpectancy, gnp, gnpold, localname, governmentform, headofstate, code2);
+        return Objects.hash(code, name, continent, region, surfacearea, indepyear, population, life_expectancy, gnp, gnpold, localname, governmentform, headofstate, code2);
+    }
+
+    @Override
+    public String toString() {
+        return "CountryEntity{" +
+                "code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", continent='" + continent + '\'' +
+                ", region='" + region + '\'' +
+                ", surfacearea=" + surfacearea +
+                ", indepyear=" + indepyear +
+                ", population=" + population +
+                ", life_expectancy=" + life_expectancy +
+                ", gnp=" + gnp +
+                ", gnpold=" + gnpold +
+                ", localname='" + localname + '\'' +
+                ", governmentform='" + governmentform + '\'' +
+                ", headofstate='" + headofstate + '\'' +
+                ", code2='" + code2 + '\'' +
+                '}';
     }
 }
