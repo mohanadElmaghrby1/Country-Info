@@ -7,7 +7,7 @@ import java.util.Objects;
  * created by mohannad  on 25/10/19
  */
 @Entity
-@Table(name = "countrylanguage")
+@Table(name = "country_language")
 @IdClass(CountrylanguageEntityPK.class)
 public class CountrylanguageEntity {
     private String countrycode;
