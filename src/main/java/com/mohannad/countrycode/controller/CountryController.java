@@ -36,6 +36,7 @@ public class CountryController {
     public CountryInfo getCountryInfo(@PathVariable String code){
         //load country info
         CountryEntity country = countryService.getCountry(code);
+//        System.out.println("size:"+country.getLangs().size());
         //get all country official languages
         List<CountrylanguageEntity> allCountryLanguages = countryLanguageService.getAllCountryLanguages(code , true);
 
@@ -44,10 +45,9 @@ public class CountryController {
         for (CountrylanguageEntity lang:allCountryLanguages) {
             allLangs.add(lang.getLanguage());
         }
-
         //create a new CountryInfo contains country data with a list of official languages
         CountryInfo countryInfo = new CountryInfo(country.getName() , country.getContinent(),country.getPopulation()
-                ,allLangs);
+                ,country.getLifeexpectancy(),allLangs);
         return countryInfo;
     }
 }
