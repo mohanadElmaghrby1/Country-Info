@@ -4,6 +4,7 @@ import com.mohannad.countrycode.model.CountrylanguageEntity;
 import com.mohannad.countrycode.repository.CountryLanguageRepository;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 /**
@@ -20,6 +21,11 @@ public class CountryLanguageServiceImpl implements CountryLanguageService {
 
     @Override
     public List<CountrylanguageEntity> getAllCountryLanguages(String countryCode , boolean isOfficial) {
-        return countryLanguageRepository.findByCountrycodeAndIsofficial(countryCode,isOfficial);
+        List<CountrylanguageEntity> officialLanguages =
+                countryLanguageRepository.findByCountrycodeAndIsofficial(countryCode, isOfficial);
+        if (officialLanguages == null) {
+            throw new EntityNotFoundException("INVALID_COUNTRY_CODE");
+        }
+        return officialLanguages;
     }
 }
