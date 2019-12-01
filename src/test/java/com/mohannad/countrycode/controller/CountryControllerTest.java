@@ -12,8 +12,7 @@ import org.mockito.MockitoAnnotations;
 
 import javax.persistence.EntityNotFoundException;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -42,7 +41,11 @@ public class CountryControllerTest {
         countryEntity.setName("ABCcountry");
         when(countryService.getCountry(any())).thenReturn(countryEntity);
         CountryInfo afgCountry = countryController.getCountryInfo("AFG");
+        //check not null
         assertNotNull(afgCountry);
+
+        //check the returned name
+        assertEquals("ABCcountry" ,afgCountry.getName() );
     }
 
 

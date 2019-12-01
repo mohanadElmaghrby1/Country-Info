@@ -1,6 +1,7 @@
 package com.mohannad.countrycode.controller;
 
 import com.mohannad.countrycode.model.ApiError;
+import org.hibernate.exception.JDBCConnectionException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,15 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
             EntityNotFoundException ex) {
         ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR);
         apiError.setMessage(ex.getMessage());
+        return buildResponseEntity(apiError);
+    }
+
+
+    @ExceptionHandler(JDBCConnectionException.class)
+    protected ResponseEntity<Object> handleDatabaseDownException(
+            EntityNotFoundException ex) {
+        ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR);
+        apiError.setMessage("INTERNAL_ERROR");
         return buildResponseEntity(apiError);
     }
 
