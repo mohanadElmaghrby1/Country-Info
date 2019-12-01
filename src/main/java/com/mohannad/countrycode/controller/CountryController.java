@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * created by mohannad  on 25/10/19
@@ -38,13 +39,16 @@ public class CountryController {
         CountryEntity country = countryService.getCountry(code);
 //        System.out.println("size:"+country.getLangs().size());
         //get all country official languages
-        List<CountrylanguageEntity> allCountryLanguages = countryLanguageService.getAllCountryLanguages(code , true);
+//        List<CountrylanguageEntity> allCountryLanguages = countryLanguageService.getAllCountryLanguages(code , true);
+        List<String> allLangs = countryLanguageService.getAllCountryLanguages(code, true)
+                .stream().map((s)->s.getLanguage())
+                .collect(Collectors.toList());
 
-        //iterate throw languages and get only language
-        ArrayList<String> allLangs=new ArrayList<>();
-        for (CountrylanguageEntity lang:allCountryLanguages) {
-            allLangs.add(lang.getLanguage());
-        }
+//        //iterate throw languages and get only language
+//        ArrayList<String> allLangs=new ArrayList<>();
+//        for (CountrylanguageEntity lang:allCountryLanguages) {
+//            allLangs.add(lang.getLanguage());
+//        }
         //create a new CountryInfo contains country data with a list of official languages
         CountryInfo countryInfo = new CountryInfo(country.getName() , country.getContinent(),country.getPopulation()
                 ,country.getLifeexpectancy(),allLangs);
