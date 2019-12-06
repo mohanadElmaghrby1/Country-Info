@@ -6,6 +6,7 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
+# Copy my Maven Local Repository into the container thus creating a new layer
       - ~/.m2:/root/.m2
     ports:
       - "8080:8080"
